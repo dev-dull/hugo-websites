@@ -1,0 +1,4 @@
+[submodule "devdull.lol/themes/kayal"]
+	path = devdull.lol/themes/kayal
+	url = https://github.com/mnjm/kayal.git
+	branch = main
