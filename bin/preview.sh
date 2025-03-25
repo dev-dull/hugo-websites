@@ -21,7 +21,7 @@ else
 fi
 
 cd "$here/../$site"
-hugo --theme="$theme" server -D &
-sleep 5
+hugo --theme="$theme" server -D -F &
+sleep 1
 open http://localhost:1313
 wait $!
