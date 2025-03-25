@@ -4,11 +4,11 @@
 # https://mnjm.github.io/kayal/docs/configuration/#theme-parameters
 
 # [Optional] Path to the site logo image relative to assets/ folder. Displayed before the Site Title in the header. Minimum size: 64x64px.
-# logo = "/imgs/logo.png"
+logo = "pizzacat.gif"
 # Site description.
-description = "A Hugo Theme"
+description = "Abstract holistic computational device."
 # [Optional] Copyright owner name.
-copyright = ""
+copyright = "Alastair Llewellyn Drong"
 # Whether to optimize images per view port.
 optimizeImg = true
 # Whether to enable copy button in code blocks.
@@ -22,7 +22,7 @@ highlightCurrentMenu = true
 # The sections to display in the recent articles list. If not provided, the section with the most articles is used.
 mainSections = ["posts"]
 # Whether to remove Hugo and theme attribution in the footer.
-removeAttribution = false
+removeAttribution = true
 # Whether to show anchor links in headings. Can be overridden by Page-specific `showHeadingAnchors` in its front matter.
 showHeadingAnchors = true
 # Whether to enable search. Needs JSON output for this to work.
@@ -45,14 +45,14 @@ showRecentLabel = "Featured"
 showRecentItems = 4
 # Whether to display a "Show more" link at the end of recent section that directs to `showMoreDest`.
 showMore = true
-showMoreDest = "/posts"
+showMoreDest = "posts"
 [homepage.profile]
 # [Optional] Displayed at the top of your homepage.
-# headline = "👋 Welcome to my site"
+headline = "alastairdrong@/dev/dull$ echo '👋 Welcome!'"
 # [Optional] Path to the profile image relative to assets/ folder. Minimum size: 200x200px.
 # image = "imgs/profile.svg"
 # Image position.
-where = "right"  # Options: right, left, top
+where = "top"  # Options: right, left, top
 
 # Article settings
 [article]
