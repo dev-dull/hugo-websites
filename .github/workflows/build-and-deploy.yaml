@@ -1,0 +1,26 @@
+name: Build and Deploy Hugo Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+
+      - name: Build Hugo sites
+        run: |
+          ls -d *.lol | while read "dname"
+          do
+            hugo --source ${dname} --destination public
+          done
