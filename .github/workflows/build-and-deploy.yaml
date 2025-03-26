@@ -24,6 +24,9 @@ jobs:
         with:
           hugo-version: 'latest'  # TODO: pin version
 
+      # My wife is judging me harshly for deploying to a server instead of using S3 or GitHub Pages.
+      # She literally made a joke about using, "...good 'ol Nginx" not knowing that I was literally doing that.
+      # I stand by my choices .... (ish)
       - name: Build and deploy Hugo sites
         run: |
           ls -d *.lol | while read "dname"
@@ -31,6 +34,6 @@ jobs:
             echo -e "\n\n==== NOW BUILDING ${dname} ===="
             hugo --source ${dname} --destination public
             if [ -f "${dname}/deploy" ]; then
-              rsync -av -e "ssh -o StrictHostKeyChecking=no" ${dname}/public/ ${{ secrets.DEPLOY_USER }}@${dname}:/var/www/${{ secrets.SITE_NAME }}/
+              rsync -av -e "ssh -o StrictHostKeyChecking=no" ${dname}/public/ ${{ secrets.DEPLOY_USER }}@${dname}:/var/www/${dname}/
             fi
           done
