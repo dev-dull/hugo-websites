@@ -13,14 +13,24 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up deploy keys
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: 'latest'  # TODO: pin version
 
-      - name: Build Hugo sites
+      - name: Build and deploy Hugo sites
         run: |
           ls -d *.lol | while read "dname"
           do
+            echo -e "\n\n==== NOW BUILDING ${dname} ===="
             hugo --source ${dname} --destination public
+            if [ -f "${dname}/deploy" ]; then
+              rsync -av -e "ssh -o StrictHostKeyChecking=no" ${dname}/public/ ${{ secrets.DEPLOY_USER }}@${dname}:/var/www/${{ secrets.SITE_NAME }}/
+            fi
           done
