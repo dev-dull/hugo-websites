@@ -37,8 +37,6 @@ jobs:
             echo -e "\n\n==== NOW BUILDING ${dname} ===="
             hugo --source ${dname} --destination public
             if [ -f "${dname}/deploy" ]; then
-              ls -lah ${dname}
-              ls -lah ${dname}/public/
-              # rsync -av -e "ssh -o StrictHostKeyChecking=no" ${dname}/public/ ${{ secrets.DEPLOY_USER }}@${dname}:/var/www/${dname}/
+              rsync -av -e "ssh -o StrictHostKeyChecking=no" ${dname}/public/ ${{ secrets.DEPLOY_USER }}@${dname}:/var/www/${dname}/
             fi
           done
