@@ -19,6 +19,11 @@ jobs:
           echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
+      - name: Install rsync
+        run: |
+          sudo apt-get update
+          sudo apt-get install rsync -y
+
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v3
         with:
