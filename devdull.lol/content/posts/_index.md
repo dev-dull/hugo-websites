@@ -6,5 +6,3 @@ showHeadingAnchors: true
 showReadingTime: false
 showDate: false
 ---
-
-stuff goes here
