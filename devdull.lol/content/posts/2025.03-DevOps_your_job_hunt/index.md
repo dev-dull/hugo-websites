@@ -8,23 +8,25 @@ showDate: true
 ---
 
 ## Start at the beginning: DevOps Your Résumé
-Back in 2016, I had just moved to the Portland Oregon area and was looking to reboot my tech career after taking about a year to explore other opportunities creating video content. I was still fairly new to the city and as a result, I didn't have much of a job network yet, so when a friend of mine who had also relocated from Chicago put out the word that he was looking for people to help organize [DevOpsDays: Portland](https://devopsdays.org/events/2016-portland/welcome/), I jumped at the chance.
+Back in 2016, I had just moved to the Portland Oregon area and was looking to reboot my tech career after taking about a year to explore other opportunities in video production. I was still fairly new to the city and as a result, I didn't have much of a job network yet, so when a friend of mine who had also relocated from Chicago put out the word that he was looking for people to help organize [DevOpsDays: Portland](https://devopsdays.org/events/2016-portland/welcome/), I jumped at the chance.
 
-While some folks on the team had experience organizing events in the past, we didn't have any established relationships with vendors, we didn't have a venue identified yet, and most importantly we didn't know if we'd land any event sponsors. We were very much starting from scratch, and there was an unspoken agreement that we would operate as though we had a shoestring budget. With some recent video editing experience under my belt, I volunteered to run the camera to record the talks, edit the videos, and get them posted to [YouTube](https://www.youtube.com/watch?v=ajT90pC3ris&list=PLxOMkEM8CUn_JSfwj_DJJhOYOZp72NoQv) (my apologies for the audio quality on the linked 2016 videos). I had volunteered to help organize knowing that it was an amazing opportunity to build my local network, and bolster my resume, which were somewhat selfish reasons, and volunteering to handle the recording of all the talks had the side effect of making me watch _all_ the talks, even the ones I might have otherwise skipped. I was _NOT_ prepared for just how eye opening some of the talks would be (enormous kudos to all the speakers, and the event organizers who selected the speakers that year). My experience deserves to be an entire post on its own, but I'll say this much: If you think burnout is caused by working too hard, you're not wrong, but there are also bundle of other causes, and knowing what those causes are will only serve to help you in your career.
+While some folks on the team had experience organizing events in the past, we didn't have any established relationships with vendors, we didn't have a venue identified, and most importantly we didn't know if we'd land any event sponsors. We were very much starting from scratch, and there was an unspoken agreement that we would operate as though we had a shoestring budget. With some recent video editing experience under my belt, I volunteered to record the talks, edit the videos, and get them posted to [YouTube](https://www.youtube.com/watch?v=ajT90pC3ris&list=PLxOMkEM8CUn_JSfwj_DJJhOYOZp72NoQv) (my apologies for the audio quality on the linked 2016 videos).
 
-One of our speakers gave a short, five minute "lightning talk" by [Emily Dunham](https://edunham.net/) titled, "DevOpsing Your Resume" where she walked through her process of managing her resume using [LaTeX](https://en.wikipedia.org/wiki/LaTeX) and Git.
+<!-- I had volunteered to help organize knowing that it was a huge opportunity to build my local network and volunteering to handle the recording of all the talks had the side effect of requiring me watch _all_ the talks, even the ones I might have otherwise skipped. I was _NOT_ prepared for just how eye opening some of the talks would be (enormous kudos to all the speakers, and my peers on the organizing team who selected the speakers that year). My experience deserves to be an entire post on its own, but I'll say this much: If you think burnout is caused by working too hard, you're not wrong, but there are also bundle of other causes, and knowing what those causes are will only serve to help you in your career. -->
+
+One of our speakers was [Emily Dunham](https://edunham.net/) who gave a short, five minute "lightning talk" titled, "DevOpsing Your Resume" where she walked through her process of managing her resume using [LaTeX](https://en.wikipedia.org/wiki/LaTeX) and Git.
 
 {{< youtube 71IPe7VnRbE >}}
 
-I landed a position not long after helping to run the DevOpsDays: Portland event, but the talk and ideas stuck with me. Fast forward to 2021 and I found myself on the job hunt again and decided that getting my resume into a Git repository would go a very, _very_ long way to keeping all the variations on my resume organized. Initially, I was following what Emily had done and to that end, I started to learn LaTeX. But I quickly realized that for a document as important as a resume, I needed to stick with technologies I know I'm comfortable with, so that when an opportunity suddenly pops up, I can crank out a variation on my resume tailored to that opening. As a result, I ended up formatting my resume in YAML to generate a Jinja template, and then and used Python generate an HTML from the template. This method had the distinct advantage of being able to register custom methods with Jinja to do operations like date math and enforcing consistent date formatting. Rendering the file as HTML allowed me to use plenty of `<div>` tags with `class="foo"` identifiers to manage the appearance with CSS. Similar to CaC (Configuration as Code) and IaC (Infrastructure as Code), I like to think of this process as, RaC, or Resume as Code.
+I had landed a position not long after helping to run the DevOpsDays: Portland event, but the talk and ideas in it stuck with me. Fast forward to 2021 and I found myself on the job hunt again and decided that getting my resume into a Git repository would go a very, _very_ long way to keeping all the variations on my resume organized. Initially, I was following what Emily had done and to that end, I started to learn LaTeX. But I quickly realized that for a document as important as a resume, I needed to stick with technologies I'm comfortable with, this way, when an opportunity suddenly pops up, I can quickly modify it to target that specific opening. As a result, I ended up formatting my resume in YAML so it can be parsed by Python into HTML, and finally rendered by Jinja. This method had the distinct advantage of being able to register Python functions with Jinja to do operations like date math, and to enforcing consistent formatting for things like dates. The use of HTML allowed me to use `<div>` tags with `class="foo"` identifiers so I could manage the appearance with CSS.
 
-I hesitate to share my code that renders the HTML partly because its been replaced by a step now performed by Gemini, and partly because having your own process can be a good talking point in interviews. But mostly, I'm of the opinion that you should find a workflow that works for you instead of trying to force yourself into my shoes. Instead, here's a scaffold of the YAML formatting I landed on which I hope can be a good launch pad to figuring out your process.
+Although I believe in open source and sharing code, I hesitate to share my code that renders the HTML. I believe that this is one of the rare instances where building your process will give you experience designing a workflow, using the process will force you to iterate on the workflow, and if nothing else, it can be a good talking point in interviews. So, instead of giving you my whole end-to-end process, here's a scaffold of the YAML formatting I landed on which I hope can be a good launch pad to figuring out a process that fits your needs.
 
 ```yaml
 - html:
   - head:
     - title: Resume - Jeffrey "The Dude" Lebowski
-    - style: '{{ add_style("style.css") }}'
+    - style: '{{ "style.css"|include_file }}'
   - body.resume:
     - div.whoami:
       - div.whoami_name: Jeffrey "The Dude" Lebowski
@@ -33,8 +35,8 @@ I hesitate to share my code that renders the HTML partly because its been replac
     - div.summary:
       - div.section_title: Summary
       - div.summary_text: |
-          Man, I'm like, a private investigator, you know? I've got skills, dude and have been fighting, like, crimes and stuff
-          from {{ date_range("1998-03-06", "now") }} I can, like, solve mysteries and stuff. Okay, so maybe I don't always solve
+          Man, I'm like, a private investigator, you know? I've got skills, dude, and have been fighting, like, crimes and stuff
+          for {{ (1998, 3, 6)|years_since }} years, man. I can, like, solve mysteries and stuff. Okay, so maybe I don't always solve
           them on purpose, but I'm good at, you know, rolling with it. I've got experience with, uh, mistaken identities, ransom
           demands, and, like, really weird dudes.
     - div.experience:
@@ -43,50 +45,120 @@ I hesitate to share my code that renders the HTML partly because its been replac
         - div.company_header:
           - div.company_name: Lebowski Foundation
           - div.company_location: Los Angeles, CA
-          - div.company_dates: '{{ date_range("1998-03-06", "now") }}'
+          - div.company_dates: '{{ (1998, 2)|date_range("Current") }}'
         - div.position:
           - div.position_header:
             - div.position_title: Private Investigator
-            - div.company_dates: '{{ date_range("1998-03-06", "now") }}'
-          - div.position_summary: Like, figured some stuff out like how that girl that ran away, like, she wasn't kidnapped man. Or, like how she actually just kidnapped herself, man.
+            - div.company_dates: '{{ (1998, 3)|date_range("Current") }}'
+          - div.position_summary: |
+              Like, figured some stuff out like how that girl that ran away, like, she wasn't kidnapped man. Or, like how she actually just
+              kidnapped herself, man.
           - ul.position_achievements:
             - li: Acquired new floor covering as, like, an interior design kind of thing.
-            - li: Like, figured out that toe deal wasn't actually the toe of Lebowski's wife, man.
-            - li: Placed, like, almost second in the First Annual Hollywood Star Lanes bowling tournament.
+            - li: Figured out that, like, the toe thing wasn't actually the toe of that girl, man.
+            - li: Got, like, almost second place in the regional bowling tournament.
           - div.position_tools_header: Technology & Applications
           - div.position_tools:
-            - div.position_tool: Brunswick's Vector Scoring System
             - div.position_tool: 14lb Brunswick Bowling Ball
             - div.position_tool: 1973 Gran Torino
+            - div.position_tool: Brunswick's Vector Scoring System
+        - div.position:
+          - div.position_header:
+            - div.position_title: Leisure Consultant
+            - div.company_dates: '{{ (1998, 2)|date_range((1998, 3)) }}'
+          - div.position_summary: |
+              Told people, like, where to find the best burgers and places to bowl, man. And, like, how to score some, uh, sweet herbals.
+          - ul.position_achievements:
+            - li: Like, helped that artist lady with her, like, art project.
+            - li: Got creative and made a, "White Russian" out of some stuff I found in the fridge.
+          - div.position_tools_header: Technology & Applications
+          - div.position_tools:
+            - div.position_tool: 14lb Brunswick Bowling Ball
+            - div.position_tool: 1973 Gran Torino
+            - div.position_tool: Brunswick's Vector Scoring System
+            - div.position_tool: Cream
+            - div.position_tool: Kahlua
+            - div.position_tool: Vodka
+    - div.company_experience:
+        - div.company_header:
+          - div.company_name: In-N-Out Burger
+          - div.company_location: Los Angeles, CA
+          - div.company_dates: '{{ (1963, 2)|date_range((1963, 4)) }}'
+        - div.position:
+          - div.position_header:
+            - div.position_title: Short Order Cook
+            - div.company_dates: '{{ (1963, 2)|date_range((1963, 4)) }}'
+          - div.position_summary: |
+              Like, I don't CARE what Walter thinks, man. I had that fry station down to a science.
+          - ul.position_achievements:
+            - li: Cooked fries, to, like, absolute perfection, man.
+            - li: Flipped burgers
+            - li: Like, always skipped the ketchup unless they asked for it because, like, this is LA, not Pittsburgh.
+          - div.position_tools_header: Technology & Applications
+          - div.position_tools:
+            - div.position_tool: Offset, high heat, laser-cut, Japanese steel spatula
     - div.education:
       - div.section_title: Education
-      - div.education_details: 'Venice High School, Venice, CA'
-      - div.education_dates: '{{ date_range("1960-09-01", "1962-10-11") }}'
+      - div.education_details: 'Venice High School, Venice, CA - {{ (1960, 9)|date_range((1962, 10)) }}'
 ```
 
 ## The now that's now now: DevOps Your Job Hunt
 <!-- When does now happen? Not until later. -->
-Here we are in 2025, I'm on the job hunt again, and there's been a wave of impressive new Artificial Intelligence technologies that are capable of interacting using natural language and can (appear to) intuit context. These tools have the ability to aid me in tackling some of the tasks I struggle with when applying to open positions by enabling me to apply DevOps principles to the job application process. To understand how I'm fitting these principles into my job search, it is helpful to look at a diagram of a DevOps workflow. Let's go through each of the steps in the diagram and apply them to my job hunt process.
+Here we are in 2025, I'm on the job hunt again, and there's been a wave of impressive new Artificial Intelligence technologies that are capable of interacting using natural language and for the purposes of applying to jobs, can help me tackle some of the tasks I struggle with when applying to open positions by enabling me to apply DevOps principles to the job application process. To understand how I'm fitting these principles into my job search, it is helpful to look at a diagram of a DevOps workflow. Let's go through each of the steps in the diagram and apply them to the application process.
 
 <!-- Perplexity wrote (most of) this CSS for me -->
 <img style="width: 100%; height: auto; border-radius: 40%; object-fit: cover; background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%); filter: brightness(1.2);" src="devoops.png">
 
 ### Plan
-So, there's CaC, Configuration as Code as well as IaC, Infrastructure as Code. To use that as inspiration for what Emily stated in her talk, I suppose what we're doing here is RaC, or Resume as Code, and just like any codebase, you'll need to figure out what language and technologies you want to use as your code base. For Emily, that was LaTeX. For myself, the initial iteration on my process was YAML and Python which generated HTML and then used headless Chrome to render a PDF. Whatever workflow you might be envisioning as your process, I would encourage you to pick technologies you're already familiar with. You don't want to find yourself missing out on an amazing opportunity because you struggling to get your resume updated.
+So, there's CaC, Configuration as Code as well as IaC, Infrastructure as Code, and although she never quite says this phrase exactly, I think we can credit Emily for RaC, or Resume as Code, and just like any codebase, you'll need to figure out what language and technologies you want to use as your code base. For Emily, that was LaTeX. For myself, the initial iteration on my process was YAML and Python which generated HTML and then used headless Chrome to render a PDF. Whatever workflow you might be envisioning as your process, I would encourage you to pick technologies you're already familiar with. You don't want to find yourself missing out on an amazing opportunity because you struggling to get your resume updated.
 
-### Code
-This is the step where you are going to write your resume in the format that best suits you and your chosen workflow. Because it is easier for me to pair down a resume than add new content to it, I dug deep and pulled out every version of my resume I could find in my email, in Google Docs, on job search platforms like Dice or LinkedIn, and anyplace else I could think of. I took all the best parts from each resume to create a monolithic version of my resume which
+Because I'm now on my second iteration of DevOps-ing my resume, I have a strong starting point to build off of, but I also know all the pain points and areas that need improvement. To understand my plan for my 2025 job hunt and why I chose to adopt AI, it's helpful to look at my old process.
 
-### Build
-This is where we need to turn your RaC into a useable format and the first step where I've adopted AI into my workflow and to understand why I picked that route, it helps to take a look at my old process.
-
-#### My _old_ automation
-1. **Edit my RaC:** This usually involved abbreviating my oldest experience down to the company name, my title, and the dates I was in that position. I would then update position summaries to highlight relevant experience, and finally change the ordering in the `position_achievements` sections so that the most relevant ones were first.
-1. **Render an HTML file:** In this step, I would run my Python script which parse my YAML file into an HTML file, and use the [PySpellChecker](https://pypi.org/project/pyspellchecker/) library to flag any issues.
-1. **Review and repeat:** I found that seeing the file as rendered HTML instead of YAML gave me a perspective shift which allowed me to see a different kinds of punctuation and grammar errors which I would overlook as a YAML file, so I would make revisions and re-render the HTML.
+#### My old build process
+<!-- Is, "My Old Automation" anything like the TV show "This Old House" ??? -->
+1. **Edit my RaC:** This usually involved abbreviating my oldest experience down to the company name, my title, and the dates I was in that position. I would then update the details of my more recent positions to highlight experience I thought was most relevant, and finally change the ordering in the `position_achievements` sections so that the ones most applicable to the role came first.
+1. **Render an HTML file:** In this step, I would run my Python script which parse my YAML file into an HTML file, and use the [PySpellChecker](https://pypi.org/project/pyspellchecker/) library to flag any spelling issues.
+1. **Review and repeat:** I found that seeing the file as rendered HTML instead of YAML gave me a perspective shift which allowed me to see punctuation and grammar errors which I had overlooked in the YAML file, so I would make revisions and re-render the HTML.
 1. **PDF-ify:** Once I was happy with the results, I would use a shell script that invoked [headless Chrome with the `--print-to-pdf` flag](https://developer.chrome.com/docs/chromium/headless#--print-to-pdf) to render a PDF file.
 
-This process probably sounds pretty good, but in practice, it was a cumbersome side. It involved a lot of manual edits to the YAML and I eventually got to the point where it was easier to maintain two variants of my RaC, `resume_details.yaml` which was a complete list of my job history, and `resume_short.yaml` which was truncated as describe above. Of course, whenever you have two versions of something they are eventually going to suffer from a certain amount of "drift" and keeping the two files in sync became a task of its own.
+This process probably sounds pretty good (well, maybe just okay), but in practice, I found it very cumbersome. It involved a lot of manual edits to the YAML and I eventually got to the point where it was easier to maintain two variants of my RaC, `resume_details.yaml` which was a complete list of my job history, and `resume_short.yaml` which was truncated as describe above. Of course, whenever you have two versions of something they are eventually going to suffer from a certain amount of "drift" and keeping the two files in sync became a task of its own.
+
+Resumes are also a somewhat short-lived document, and although I had been good about keeping old copies of my resume, I hardly ever put them in the same place twice, and I had been inconsistent with my naming conventions. The result was that the files were scattered, disorganized, and offered no system for me to track the role I had applied to or the date that I had applied to it.
+
+The most painful part of this process, however, was that I found myself constantly switching between different sources of information so I can build a cover letter that best reflected the overlap of my career experience with the position requirements and their company values. I would find myself mentally exhausted from a cycle of re-evaluating information from these sources just to make the subtle tweaks that gets me to a result I'm satisfied with.
+
+#### Goals for my new build process
+My main goals with my 2025 job hut were this:
+1. **Use AI to _outline_ a cover letter, and be a single point of reference:** Normally, we give AI a prompt to get information back, but in this instance, I'm prompting the AI to prompt me. All too often, I find myself often getting stuck figuring how how to begin a cover letter. It isn't unusual for me to stare at a blank document until my monitor goes into power save, or for me to start by writing a paragraph that I know will go somewhere in the middle of the letter. I also end up with similar struggles while trying to type up a conclusion. I've seen smart people land jobs better than mine with cover letters that are little more than a single paragraph, but apparently my brain doesn't work like that, so asking AI to outline some points I should be sure to hit, and having it build the outline from the three sources I outlined (resume, job description, and company values), could go a *long*, long way to making the process easier.
+2. **Use AI for a fast-feedback loop:** I never feel comfortable asking friends and former coworkers to look over my resume because I know it would require an investment of their time. It's one of those things that I know I _should_ do, but I usually skip <!-- you know, just like taxes and flossing --> and in the instances where I _have_ asked for a review, I've found that they typically can't get to it right away, which creates a window for me to miss out on an opportunity I'm excited for. Although far from being a perfect solution, AI helps me fill this gap in my process: it has immediate availability, it can perform the review quickly, it can respond programmatically for automation. Having the AI score me numerically to the job description will help me gauge if my changes are trending towards an improvement.
+3. **Get more organized (build the code with build code):** A big part of my organizational issues stemmed from the fact that large portions of my process remained without automation. Getting my resume into source control was a huge step in the right direction, but I was still invoking my scripts manually which resulted in inconsistent naming, scattered storage, and a lack of organization. Since my RaC was already source controlled in GitHub and because most of my issues with my current process stemmed from a lack of consistency, leveraging the large ecosystem had built up around GitHub Actions made a lot of sense for solving my pain points.
+
+### Code
+If you're building your Resume as Code from scratch, it'll likely take you a couple of iterations before you land on a format that you like. You might got all-in with Markdown or even double down on the "code" aspect and go with a fully object-oriented approach where every position you've held is an instance of a class in Java. Regardless of your format, I recommend you do a few things:
+1. Dig in and find every old copy of your resume you can scrounge up. When I started this process, I searched through my email, looked in Google Docs, logged into job platforms I hadn't touched in years like Dice, blew the dust off of old computers I still had kicking around, and checked anyplace else I could think of.
+1. Start with a short version of your resume, write some test code, and experiment with tooling. Get some proof-of-concept work done to verify that your strategy from "Plan" step will meet your needs. It's better to find yourself having to go back to the planning stage than discovering that the structure or the required workflow doesn't suit you.
+1. Once you've proven out your plan, write your RaC. I took all the best parts from each version of my resume I had been able to dig up, to create the monolithic version `resume_details.yaml`. Knowing for a fact that I now had a single source of truth to use as a starting point for all my future job hunts boosted my confidence that I would always be putting forward my best effort for every job application.
+
+Since I had already had a strong starting point to build off, I could focus on meeting the goals I had identified in my planning phase and I wanted to tackle them in the order that had the largest positive impact first, so my first step was to find an AI platform that has an easy to approach API and, being that I'm unemployed, has a generous free tier. I did a cursory check of other popular platforms, but Google Gemini not only had a generous free tier, they made it easy to [get an api key](https://ai.google.dev/gemini-api/docs/api-key), and had clear documentation on how to get [started with text generation](https://ai.google.dev/gemini-api/docs/text-generation#rest). After a quick test that rendered a reasonable response from giving it my resume and a job description, it was a defacto winner.
+
+With my Gemini picked as my AI platform of choice, and a proof-of-concept under my belt that proved my plan was generally possible, I next wanted to determine if Gemini was actually going to be helpful, or if it was just going to hallucinate and pat me on the back. So I set out to create the [GitHub Action `gemini-qualified`](https://github.com/dev-dull/job-search-automations?tab=readme-ov-file#dev-dulljob-search-automationsgemini-qualified) to act as "barometer" to both prove out the usefulness of my plan, by confirming a few key aspects on my perception of a job listing. First, I wanted Gemini to give me a second opinion on how qualified I appear to be for the role and to get some initial feedback on strengths I could play to and shortcomings I should try to make up for when applying. Second, because I've seen some wild stuff in job descriptions on LinkedIn, and because my first pass reading a job description is usually just a quick read of the candidate requirements, I wanted to know if Gemini thought a job description was well written. Third, I wanted to get some initial impressions about the company and what they are like to work for because if an AI knows its bad, it must be pretty darn bad. <!--Can AI companies be liable for defamation if their platform says something naughty? --> One of my [early tests](https://github.com/dev-dull/job-search-automations/actions/runs/13338493030) compared my resume to an open position at HashiCorp and listed, "Could provide more specific information about the tools and technologies used by the team." as one of the deficiencies of the job description which FOR YEARS has been a frustration of mine with their job descriptions, which I took as a sign that I was on the right track.
+
+<!-- side-bar: if someone at Hashicorp is reading this, I understand that ya'll want to make everyone feel like they've got a shot at the position, but with me, it backfires every time. I sit and read the job description multiple times, can't make up my mind if I'm a fit or not, and move on. Between my last three job hunts, I've literally lost days getting frustrated with your job listings. -->
+
+With the `gemini-qualified` action working, a pattern was emerging on how the finer details of my job application workflow would look, and signs with using Gemini were showing that there was larger value I could yet incorporate. I used the pattern I had established with the fist action and began to tackle my largest pain point of writing cover letters, and built the [`gemini-cover-outline` action](https://github.com/dev-dull/job-search-automations#dev-dulljob-search-automationsgemini-cover-outline) to use my resume, the job description, and the text from the company's careers page to list the points I should be sure to hit. I've only used the action a handful of times since creating it, and I'm not necessarily any faster at writing my cover letters, but the reduced cognitive load has been a tremendous help, and keeps me fresh eyed enough to start tackling the next application.
+
+Now that I had effectively unblocked myself by making it easier to write cover letters, it was time to tackle the process of getting fast-feedback on my resume. My initial plan was give Gemini the YAML version with the instructions to generate HTML with the [strict instructions to, "not add ... misleading information"](https://github.com/dev-dull/job-search-automations/blob/bb9099c4dd435081ddd39f60ff058d75fd40e561/gemini-rewrite/action.yaml#L74) and was also told to [make it look nice](https://github.com/dev-dull/job-search-automations/blob/bb9099c4dd435081ddd39f60ff058d75fd40e561/gemini-rewrite/action.yaml#L83-L84). There was a lot about this action that worked well. It understood on its own that each key value in the YAML file represented an HTML tag and a class name, it generally made a nice looking resume, it generated some CSS styling that I have since tweaked and permanently adopted, and I never saw it lie about my qualifications. However, it came with significant issues as well. It generally eliminated so much text it left my resume feeling very sparse, it occasionally evaluated dates incorrectly, it would correctly infer information about my resume that I deliberately omit because they don't align with my career goals, and worst of all, I found that I would have to read and validate every aspect of my resume to verify its accuracy which hampered my process. Overall, the [`gemini-rewrite` action](https://github.com/dev-dull/job-search-automations?tab=readme-ov-file#dev-dulljob-search-automationsgemini-rewritev030) was a net-negative to my process and I deprecated it but I also spent some time asking myself, "_Why_ did this fail?" and the conclusion that I came to is right there in the DevOps diagram: I was trying to go straight from code to release, virtually skipping the "build" build step by having Gemini do it, which then required me to step backwards _manually_ do the "test" step. <!-- Even as a proponent of the DevOps model, I know better than to think that the pattern is always applicable, but in this case, -->
+
+One of the things about the DevOps model that I think doesn't get enough discussion is that when you complete the "Dev" loop or the "Ops" loop, there's always the option to repeat that side and having implemented a plan that arguably skipped build and test, it was time to revisit the planning stage. Learning from what worked so well for me with the `gemini-cover-outline` action, I decided to ask Gemini to _recommend_ changes instead of trying to have it make the changes for me, and built the [`gemini-tailor` action](https://github.com/dev-dull/job-search-automations?tab=readme-ov-file#dev-dulljob-search-automationsgemini-tailor). Its hard for me to express just how enormous of an improvement this was. It highlighted items that I could validly frame with industry buzz words like, "observability," "DevSecOps," and "GitOps." It made great recommendations on things to cut, and things to add. Combining `gemini-tailor` with `gemini-qualified` allowed me to identify revisions to my resume, make and commit changes, and promptly get feedback that helped me gauge if my changes were trending me in the right direction.
+
+Since using Gemini to build an HTML file for me had proven to be a very bad plan<!--™️-->, I fell back onto my previous Python tooling to process the YAML into HTML, but I learned from my previous job hunt that processing the files on my local machine was going to leave me disorganized, and because I had .
+
+permanent changes, improvements
+
+### Build
+This is where we need to turn your RaC into a format that can be used to apply to jobs.
+
+[<img width="225%" height="125%" src="resume-workflow-diagram6.svg" />](resume-workflow-diagram6.svg)
 
 ### Test
 There's multiple things that need to be tested here
