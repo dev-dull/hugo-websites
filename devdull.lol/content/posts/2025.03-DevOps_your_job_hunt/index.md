@@ -151,35 +151,37 @@ Now that I had effectively unblocked myself by making it easier to write cover l
 
 One of the things about the DevOps model that I think doesn't get enough discussion is that when you complete the "Dev" loop or the "Ops" loop, there's always the option to repeat that side and having implemented a plan that arguably skipped build and test, it was time to revisit the planning stage. Learning from what worked so well for me with the `gemini-cover-outline` action, I decided to ask Gemini to _recommend_ changes instead of trying to have it make the changes for me, and built the [`gemini-tailor` action](https://github.com/dev-dull/job-search-automations?tab=readme-ov-file#dev-dulljob-search-automationsgemini-tailor). Its hard for me to express just how enormous of an improvement this was. It highlighted items that I could validly frame with industry buzz words like, "observability," "DevSecOps," and "GitOps." It made great recommendations on things to cut, and things to add. Combining `gemini-tailor` with `gemini-qualified` allowed me to identify revisions to my resume, make and commit changes, and promptly get feedback that helped me gauge if my changes were trending me in the right direction.
 
-Since using Gemini to build an HTML file for me had proven to be a very bad plan<!--™️-->, I fell back onto my previous Python tooling to process the YAML into HTML, but I learned from my previous job hunt that processing the files on my local machine was going to leave me disorganized, and because I had .
-
-permanent changes, improvements
-
 ### Build
-This is where we need to turn your RaC into a format that can be used to apply to jobs.
+This is where we need to turn a RaC into a format that can be used to apply to jobs. Since using Gemini to build an HTML file for me had proven to be a very bad plan<!--™️-->, I fell back onto my previous Python tooling to process the YAML into HTML, but I learned from my previous job hunt that processing the files on my local machine was going to leave me wildly disorganized, so I build a GitHub Workflow that rendered the YAML into HTML and then used the command line tool `wkhtmltopdf` to render the HTML out as a PDF. I would link to the workflow here, but it is currently locked away in my private `resume` git repository. There's generally nothing unexpected in it: check out the repo, set up Python, install requirements, run my script to render the YAML to HTML using the branch name as part of the file name, use `wkhtmltopdf` to convert the file to a PDF, and archive both files as artifacts to the run of the workflow.
 
-[<img width="225%" height="125%" src="resume-workflow-diagram6.svg" />](resume-workflow-diagram6.svg)
+Having this resume generation process automated is meant to be my gateway towards organization. So long as I can keep my branch names clear and concise, then all the various versions will have a clear purpose on a searchable platform.
 
 ### Test
-There's multiple things that need to be tested here
-Gemini looks things over (fast feedback -- go back to "Plan" if you're not happy with the results)
-
-Use this as an opportunity to circle through a second iteration of the 'Dev' side in the 'DevOps' diagram, but don't forget that you also need to test (or practice) applying to positions as well. Your workflow might prove to be perfect for you, but if an online application form doesn't accept the format your resume is in, then you know that further changes need to be made to the workflow. Use these test applications as an opportunity to apply to submit some "moonshot" applications for jobs you want but don't expect to get, and to apply to places where you can get some practice interviews under your belt.
+Th only testing I'm currently doing is just giving everything one last look before moving onto the next step. Maybe you have a friend on standby to give things a quick look for any obvious mistakes. You might even want to test your process by applying to a few jobs you know you don't want, but might help you find pain points in your process. After all, if you end up with a call-back on one of those positions, it could lead to good interview practice. You can test your process as an opportunity to send out some "moonshot" applications where you would love to have the job, but don't really expect to get. Remember that if there's ever anything about your process that isn't working for you, now is great time to make a second loop through the "Dev" side of the DevOps diagram by circling back to the "Plan" phase.
 
 ### Release
-Depending on your workflow, this might mean a merge to the mainline branch. For me, this means opening an Issue to my resume repository for me to track my job application process.
+I like to think of this similar to creating a "Release" on GitHub where I'm more or less doing all the steps necessary to mark it as done. For me, this means opening up a GitHub issue where I track a link to the job posting, any salary information, the date I applied, and links to the GitHub Workflow(s) that helped me write my cover letter and revise my resume.
 
 ### Deploy
-Submit your application
+Deploying in this case is really is nothing more than submitting your application.
 
 ### Operate
-Put the changes you liked into your base resume
+For us, this is little more than waiting for some recruiter to take on the task of reading your submitted application, but hopefully, you identified changes or improvements to your resume that you should make permanent, and while those changes are fresh in your mind, this is a good opportunity to identify those changes and commit those back into the default branch of your resume repository.
 
 ### Monitor
-In my mind, this is the first and last step of the job hunt process and has two elements.
+Now that we have a RaC and an established process, the "monitor" step is now the point were we begin and end each iteration of the job hunt process, and it has two elements.
 
-1. **Look for open positions --** Automating this step is difficult if for no other reason than most job listing aggregators have have locked down their pages. From my research, the most popular job aggregation websites removed the option to fetch a list of open roles starting in the year 2015 with LinkedIn, and one of the last being Dice in 2020 (note that the latest year I found was Jooble in 2022, but until the writing of this, I had never heard of the platform). Web scraping is still a potential avenue of automation, but likely violates terms of service, and even if that doesn't bother you, you'll probably end up having to figure out how to get around a CAPTCHA or two. All of that is probably more work than just sifting through some job listings, or better yet spending some time talking to people.
-1. **Watch for responses to applications --** and for requests for you to apply
-Although you could likely create some automations around email monitoring or even phone call screening, you're probably not getting such a high volume of messages that you need special tooling to handle it. The worst you'll get likely get here are messages from 3rd party recruiters and even then the risk of, [alert fatigue](https://en.wikipedia.org/wiki/Alarm_fatigue) is low.
+1. **Look for open positions:** I really wanted to automate much of this step, but it proved non-trivial. Most job listing aggregators have have locked down their pages. Web scraping is still a potential avenue of automation, but likely violates terms of service, and even if that doesn't bother you, you'll probably end up having to figure out how to get around a CAPTCHA or two. All of that is probably more work than just sifting through some job listings, or better yet spending some time talking to people.
+1. **Watch for responses to applications (and for requests for you to apply):** Although you could likely create some automation around email monitoring and maybe even phone call screening, you're probably not getting such a high volume of messages that you need special tooling to handle it. The worst you'll get likely get here are messages from 3rd party recruiters and even then the risk of, [alert fatigue](https://en.wikipedia.org/wiki/Alarm_fatigue) is low.
 
 Overall, my attitude here is that there's room for automation, but about the best I'd be able to create is effectively reply bot, and even if I added some AI dark magic to bot, responding myself seems much more likely to get me to the next step of the interview process.
+
+## My end-to-end RaC workflow
+[<img src="resume-workflow-diagram7.svg" />](resume-workflow-diagram7.svg)
+
+I'll quickly walk through the diagram. I start by making a new branch in the git repository for my RaC which includes the file `job.txt` that contains the text from the job description. This triggers two GitHub Actions Workflows where one runs the `gemini-tailor` action, and the other workflow runs the `gemini-qualified` action. I use the output from `gemini-tailor` to revise my resume, re-triggering the workflows, and I can then compare the outputs of the two `gemini-qualified` runs to evaluate if I've made meaningful improvements. I continue this loop of revision and evaluation until I'm ready to apply to the open position and once I am, I manually trigger the workflow which renders the PDF document and then runs the `gemini-cover-outline` action to generate a prompt that will help me create a cover letter.
+
+## Iterate (do it all again)
+There's still a lot of room for improvement in my workflow. I can already see myself having a repository cluttered with a lot of branches since I don't have a great way of deciding when a branch becomes stale. I also don't have a great way of getting small improvements to my resume out of a branch and back into the `main` branch since any given branch will have many changes, not all of which belong back in my base resume in the `main` branch. These are things that I'll need to find solutions for, and in addition to these paint points, there's a number if improvements I'd like to add in the future. First and foremost, Gemini isn't really regarded as the best AI platform, so I'd like to test out platforms. I'm currently manually opening a GitHub Issue to track my application status, and that is a step that can easily be automated. I also think there's room for automation in the monitoring step, and build a workflow that will automatically close a GitHub Issue when AI recognizes a rejection letter.
+
+There's no way around it, job hunting is an awful experience, but using the skills I've developed through my career has proven to be able to feed back into the work necessary to find the next chapter of it.
