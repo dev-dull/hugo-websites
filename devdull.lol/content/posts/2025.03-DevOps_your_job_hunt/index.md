@@ -14,7 +14,7 @@ While some folks on the team had experience organizing events in the past, we di
 
 <!-- I had volunteered to help organize knowing that it was a huge opportunity to build my local network and volunteering to handle the recording of all the talks had the side effect of requiring me watch _all_ the talks, even the ones I might have otherwise skipped. I was _NOT_ prepared for just how eye opening some of the talks would be (enormous kudos to all the speakers, and my peers on the organizing team who selected the speakers that year). My experience deserves to be an entire post on its own, but I'll say this much: If you think burnout is caused by working too hard, you're not wrong, but there are also bundle of other causes, and knowing what those causes are will only serve to help you in your career. -->
 
-One of our speakers was [Emily Dunham](https://edunham.net/) who gave a short, five minute "lightning talk" titled, "DevOpsing Your Resume" where she walked through her process of managing her resume using [LaTeX](https://en.wikipedia.org/wiki/LaTeX) and Git.
+One of our speakers was [Emily Dunham](https://edunham.net/) who gave a short, five minute "lightning talk" titled, "DevOpsing Your Resume" which walked through the process of managing a resume using [LaTeX](https://en.wikipedia.org/wiki/LaTeX) and Git.
 
 {{< youtube 71IPe7VnRbE >}}
 
