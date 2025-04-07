@@ -1,5 +1,5 @@
 ---
-title: 'DevOps Your Job Hunt with GitHub Actions and the Google Gemini API as a Fast-Feedback Loop'
+title: 'DevOps Your Job Hunt with GitHub Actions and the Google Gemini API For Fast-Feedback'
 date: 2025-03-26T00:00:00-08:00
 draft: false
 showHeadingAnchors: true
