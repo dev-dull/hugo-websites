@@ -20,26 +20,33 @@ title = "Videos"
 url = "/videos/"
 weight = 2
 
+[[main]]
+name = "stickers"
+title = "Stickers"
+url = "/stickers/"
+weight = 3
+
 # [[main]]
 # name = "tags"
 # title = "Tags"
 # url = "/tags/"
 # weight = 2
-#
+
 [[main]]
 name = "about"
 title = "About"
 url = "/about/"
-weight = 3
+weight = 4
+
 
 [[main]]
 name = "aistatement"
 title = "AI Statement"
 url = "/ai/"
-weight = 4
+weight = 5
 
 [[main]]
 name = "github"
 pre = "github"
 url = "https://github.com/dev-dull"
-weight = 5
+weight = 6
