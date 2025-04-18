@@ -7,4 +7,4 @@ showReadingTime: false
 showDate: false
 ---
 
-<img src="https://devdull.lol/stickers/2024.05-terraform_destroy/terraform_destroy.png">
+<img style="width: 100%; height: auto; border-radius: 40%; object-fit: cover; background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%); filter: brightness(1.2);" src="https://devdull.lol/stickers/2024.05-terraform_destroy/terraform_destroy.png">
