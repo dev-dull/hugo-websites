@@ -8,5 +8,5 @@ showDate: false
 ---
 
 Mall grabbin' CAT-5e since 2020.
-<!-- uuuuhg -->
-<img src="https://devdull.lol/stickers/2020.02-VLANS/vlans.png">
+
+<img src="https://devdull.lol/stickers/2020.02-vlans/vlans.png">
