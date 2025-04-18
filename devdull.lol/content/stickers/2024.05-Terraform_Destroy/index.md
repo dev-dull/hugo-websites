@@ -7,4 +7,4 @@ showReadingTime: false
 showDate: false
 ---
 
-<img src="Ayyyws%20Logo.png">
+<img src="https://devdull.lol/stickers/2024.05-terraform_destroy/terraform_destroy.png">

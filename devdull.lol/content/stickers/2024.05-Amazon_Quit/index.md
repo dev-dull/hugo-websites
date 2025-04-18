@@ -9,4 +9,4 @@ showDate: false
 
 ...without saving.
 
-<img src="amazon_quit.png">
+<img src="https://devdull.lol/stickers/2024.05-amazon_quit/amazon_quit.png">

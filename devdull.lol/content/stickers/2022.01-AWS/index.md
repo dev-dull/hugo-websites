@@ -9,4 +9,4 @@ showDate: false
 
 The superior AWS ™️
 
-<img src="alastair-ws.png">
+<img src="https://devdull.lol/stickers/2022.01-aws/alastair-ws.png">
