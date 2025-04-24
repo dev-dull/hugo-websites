@@ -13,7 +13,7 @@ I don't currently have any kind of stats or log analysis for this website, but I
 Just in a short `tail` of my log there were multiple entries of people trying to hit a variety of PHP endpoints. "I'm not running PHP." I thought to myself, as I briefly panicked, wondering how these endpoints could possibly exist. I very promptly realized, however, that the log was showing a `404` status code being returned for every PHP endpoint attempting to being accessed. Squinting a bit harder at the paths a common pattern emerged where the URLs also contained two letters many readers will know: W and P.
 
 ## You know ~~the rules~~ WordPress and so do I
-The first thing I wanted to know was how much of my traffic are script kiddies (or skiddies) trying to alter my website so did a couple of quick line counts to get some back-of-the-napkin math.
+The first thing I wanted to know was how much of my traffic are [script kiddies](https://en.wikipedia.org/wiki/Script_kiddie) (or skiddies) trying to alter my website so did a couple of quick line counts to get some back-of-the-napkin math.
 
 ```bash
 user@bash$ cat web.log | grep -i php | wc -l
