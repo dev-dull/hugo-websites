@@ -1,5 +1,5 @@
 ---
-title: 'Under the Sea: trying out Digital Ocean's FaaS offering for the first time'
+title: "Under the Sea: trying out Digital Ocean's FaaS offering for the first time"
 date: 2024-07-26T00:00:00-08:00
 draft: false
 showHeadingAnchors: true
