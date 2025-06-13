@@ -42,7 +42,7 @@ showRecent = true
 # Heading label for recent items.
 showRecentLabel = "Featured"
 # Number of recent items to show.
-showRecentItems = 4
+showRecentItems = 10
 # Whether to display a "Show more" link at the end of recent section that directs to `showMoreDest`.
 showMore = true
 showMoreDest = "posts"
@@ -104,7 +104,7 @@ showBreadcrumbs = false
 # Whether to display pages as a card
 cardView = true
 # Whether to display RSS link
-showRSS = false
+showRSS = true
 
 # Social links
 # [[social]]
