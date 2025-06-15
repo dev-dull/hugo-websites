@@ -23,6 +23,10 @@ Now, I had landed a job not long after helping to run the DevOpsDays: Portland e
 
 Although I believe in open source and sharing code, I hesitate to share my code that renders the HTML. I believe that this is one of the rare instances where the experience of designing and using your own workflow will force you to iterate into a pattern that best suits you. If nothing else, it can be a good talking point in interviews. So, instead of giving you all the code for my end-to-end process, here's a scaffold of the YAML formatting I landed on, which I hope can be a good launch pad to figuring out a process that fits your needs.
 
+{{% notice tip %}}
+Update from June, 2025: For more standardized format, Check out the [JSON Resume schema website](https://jsonresume.org/schema), or visit their [GitHub page](https://github.com/jsonresume/jsonresume.org).
+{{% /notice %}}
+
 ```yaml
 - html:
   - head:
