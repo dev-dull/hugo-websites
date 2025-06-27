@@ -25,7 +25,7 @@ jobs:
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'  # TODO: pin version
+          hugo-version: '0.147.8'
 
       # My wife is judging me harshly for deploying to a server instead of using S3 or GitHub Pages.
       # She literally made a joke about using, "...good 'ol Nginx" not knowing that I was literally doing that.
