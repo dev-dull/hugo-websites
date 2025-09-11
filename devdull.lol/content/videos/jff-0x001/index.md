@@ -1,5 +1,5 @@
 ---
-title: 'Coding Just For Fun - Ep. 0x001 - Part 1 of 3: Conway's Game of Life'
+title: 'Coding Just For Fun - Ep. 0x001 - Part 1 of 3, Conway's Game of Life'
 date: 2025-09-09T00:00:00-08:00
 draft: false
 showHeadingAnchors: true
