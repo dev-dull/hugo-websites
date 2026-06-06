@@ -2,3 +2,5 @@
 **/.hugo_build.lock
 **/public
 **/.DS_Store
+# Hugo-generated editor helper (emitted by the theme's JS build)
+**/assets/jsconfig.json
