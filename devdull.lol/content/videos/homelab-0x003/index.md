@@ -1,7 +1,7 @@
 ---
 title: "Homelab Ep. 0x003 - Homelab, hockey, and memory management"
 date: 2026-06-05T23:24:18+00:00
-draft: true
+draft: false
 showHeadingAnchors: true
 showReadingTime: false
 showDate: false
