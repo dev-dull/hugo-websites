@@ -3,8 +3,8 @@
 # URL to the root of your website.
 baseURL = "https://devdull.lol/"
 
-# Site's language code
-languageCode = 'en-us'
+# Site's locale (replaces the deprecated `languageCode` key as of Hugo 0.158).
+locale = 'en-us'
 
 title = "Alastair Drong"
 
