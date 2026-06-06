@@ -1,0 +1,15 @@
+# Passive safety net for the kayal theme submodule.
+#
+# This is the "floor": Dependabot tracks the submodule's branch (main) HEAD and
+# opens a PR when upstream moves, so a long gap between posts can't leave the
+# theme silently years behind. It tracks commits, not release tags -- the
+# deliberate, preview-gated release bumps happen via bin/theme-check.sh.
+version: 2
+updates:
+  - package-ecosystem: "gitsubmodule"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 1
+    commit-message:
+      prefix: "submodule"

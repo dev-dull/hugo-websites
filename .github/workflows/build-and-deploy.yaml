@@ -31,12 +31,33 @@ jobs:
       # She literally made a joke about using, "...good 'ol Nginx" not knowing that I was literally doing that.
       # I stand by my choices .... (ish)
       - name: Build and deploy Hugo sites
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         run: |
-          ls -d *.lol | while read "dname"
-          do
+          # Fail the whole job on any error, unset var, or broken pipe, so a bad
+          # build can never silently rsync a half-baked site to production.
+          set -euo pipefail
+
+          for dname in *.lol; do
             echo -e "\n\n==== NOW BUILDING ${dname} ===="
-            hugo --source ${dname} --destination public
-            if [ -f "${dname}/deploy" ]; then
-              rsync -av -e "ssh -o StrictHostKeyChecking=no" ${dname}/public/ ${{ secrets.DEPLOY_USER }}@${dname}:/var/www/${dname}/
+
+            # --cleanDestinationDir guarantees a fresh build: stale files from a
+            # removed post or asset can't linger in public/ and get deployed.
+            hugo --source "${dname}" --destination public --cleanDestinationDir
+
+            if [ ! -f "${dname}/deploy" ]; then
+              echo "${dname}: no deploy marker, built only -- skipping deploy."
+              continue
             fi
+
+            # Guard: refuse to deploy a build that produced no usable homepage.
+            # Catches the "hugo exited 0 but emitted nothing useful" failure mode.
+            if [ ! -s "${dname}/public/index.html" ]; then
+              echo "::error::${dname}: build produced no index.html -- refusing to deploy."
+              exit 1
+            fi
+
+            echo "==== DEPLOYING ${dname} ===="
+            rsync -av -e "ssh -o StrictHostKeyChecking=no" \
+              "${dname}/public/" "${DEPLOY_USER}@${dname}:/var/www/${dname}/"
           done
