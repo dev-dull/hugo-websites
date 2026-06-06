@@ -8,10 +8,10 @@ argument to the `{{< youtube ID >}}` shortcode), NOT by slug or title, so
 re-running only ever adds genuinely-new videos and never disturbs the slugs,
 titles, or descriptions you've curated by hand.
 
-The generated entries are a *starting draft* -- slug, title, description, and
-date are all things you typically curate -- so they're marked `draft: true`.
-(Note: this site sets buildDrafts=true, so that flag does NOT hide them once
-merged; the real gate is reviewing the PR before it reaches main.)
+The generated entries are a *starting point* -- slug, title, description, and
+date are all things you typically curate -- but they're written `draft: false`
+so that merging the (reviewed) PR publishes them directly. The PR review is the
+gate; there's no second draft flag to flip.
 
 Usage:
     bin/yt-sync.py [--feed URL] [--dry-run]
@@ -92,7 +92,7 @@ def render(entry):
         "---\n"
         f"title: {yaml_quote(entry['title'])}\n"
         f"date: {entry['published']}\n"
-        "draft: true\n"
+        "draft: false\n"
         "showHeadingAnchors: true\n"
         "showReadingTime: false\n"
         "showDate: false\n"

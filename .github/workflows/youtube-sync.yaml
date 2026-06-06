@@ -48,14 +48,14 @@ jobs:
           commit-message: "Add new videos from the YouTube RSS feed"
           title: "Sync new YouTube videos"
           body: |
-            Auto-generated **draft** entries for videos in the channel RSS feed
-            that weren't on the site yet. Created by `bin/yt-sync.py`.
+            Auto-generated entries for videos in the channel RSS feed that
+            weren't on the site yet. Created by `bin/yt-sync.py`.
 
             Before merging, curate each new `content/videos/<slug>/index.md`:
             - shorten the slug (the folder name) to match your style
             - tidy the title and trim the description
             - adjust the date if you want something other than the upload time
 
-            ⚠️ `buildDrafts = true`, so these go live as soon as this merges even
-            though they're marked `draft: true`. Curate first, then merge.
+            These are `draft: false`, so they publish when this PR merges -- this
+            review is the gate.
           labels: youtube-sync
