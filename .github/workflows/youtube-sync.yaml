@@ -19,6 +19,21 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+      # Refuse to run while a sync PR is open: a re-run regenerates from main and
+      # would clobber any slug/title/description curation done on that PR. Merge
+      # or close it first.
+      - name: Fail if a YouTube Sync PR is already open
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          existing=$(gh pr list --repo "${{ github.repository }}" \
+            --head youtube-sync --state open --json number --jq '.[].number')
+          if [ -n "$existing" ]; then
+            echo "::error::A YouTube Sync PR is already open (#${existing}). Merge or close it before syncing again."
+            exit 1
+          fi
+          echo "No open YouTube Sync PR -- proceeding."
+
       - name: Check out repository
         uses: actions/checkout@v5
 
