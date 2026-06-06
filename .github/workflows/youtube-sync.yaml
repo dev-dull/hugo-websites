@@ -1,0 +1,46 @@
+name: Sync YouTube videos
+
+# Manually triggered: run it after you publish a video. It reads the channel
+# RSS feed, writes a draft page bundle for any video not already on the site,
+# and opens a PR for you to curate (slug, title, description) before merging.
+on:
+  workflow_dispatch:
+    inputs:
+      feed_url:
+        description: "YouTube channel RSS feed URL"
+        required: false
+        default: "https://www.youtube.com/feeds/videos.xml?channel_id=UCEQngyGaouaoleaXcjd2iog"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Sync videos from the feed
+        run: python3 bin/yt-sync.py --feed "${{ inputs.feed_url }}"
+
+      - name: Open a PR with any new videos
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: youtube-sync
+          delete-branch: true
+          commit-message: "Add new videos from the YouTube RSS feed"
+          title: "Sync new YouTube videos"
+          body: |
+            Auto-generated **draft** entries for videos in the channel RSS feed
+            that weren't on the site yet. Created by `bin/yt-sync.py`.
+
+            Before merging, curate each new `content/videos/<slug>/index.md`:
+            - shorten the slug (the folder name) to match your style
+            - tidy the title and trim the description
+            - adjust the date if you want something other than the upload time
+
+            ⚠️ `buildDrafts = true`, so these go live as soon as this merges even
+            though they're marked `draft: true`. Curate first, then merge.
+          labels: youtube-sync
