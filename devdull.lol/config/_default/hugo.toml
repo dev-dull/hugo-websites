@@ -23,10 +23,11 @@ enableRobotsTXT = true
 # Length of default summaries.
 summaryLength = 0
 
-# Build drafts during site generation.
-buildDrafts = true
-# Build pages with future dates during site generation.
-buildFuture = true
+# Build drafts during site generation. Off in production -- bin/preview.sh runs
+# `hugo server -D -F`, so drafts and future-dated pages still show up locally.
+buildDrafts = false
+# Build pages with future dates during site generation. See note above.
+buildFuture = false
 
 # The types of outputs to generate for the homepage.
 # RSS is required to create RSS feeds, and JSON is needed for the search to function.
