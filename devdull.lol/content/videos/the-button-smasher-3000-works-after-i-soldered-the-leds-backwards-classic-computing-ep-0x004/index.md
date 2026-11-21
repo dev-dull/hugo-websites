@@ -9,21 +9,6 @@ showDate: false
 
 {{< youtube Q_xGuoiSDrM >}}
 
-## Description
-# YouTube: Classic Computing 0x004
-
-## Titles
-
-1. **My First PCB Works (After I Soldered the LEDs Backwards) (Classic Computing – Ep. 0x004)** ⭐ recommended
-2. I Gave My SNES Controller a Ribbon Cable Port (Classic Computing – Ep. 0x004)
-3. No Flux, Backwards LEDs, One Working Button Smasher (Classic Computing – Ep. 0x004)
-4. From Porcupine to Ribbon Cable: Soldering the Button Smasher 3000 (Classic Computing – Ep. 0x004)
-
-### Chosen title
-The Button Smasher 3000 Works (After I Soldered the LEDs Backwards) (Classic Computing – Ep. 0x004)
-
-## Description
-
 The circuit boards I designed in KiCad finally showed up, so it's time to solder them and find out whether they work. The parts are late, the store is out of flux, and the copper pads aren't what I meant to order. What could go wrong?
 
 Two boards get built, one controller gets surgery, and the breadboard rat's nest gets a little smaller. Stick around for the final button test.
